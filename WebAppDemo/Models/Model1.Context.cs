@@ -13,10 +13,10 @@ namespace WebAppDemo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebAppDemoEntities : DbContext
+    public partial class WebAppDemoEntities1 : DbContext
     {
-        public WebAppDemoEntities()
-            : base("name=WebAppDemoEntities")
+        public WebAppDemoEntities1()
+            : base("name=WebAppDemoEntities1")
         {
         }
     

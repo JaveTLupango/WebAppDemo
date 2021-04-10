@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebAppDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'WebAppDemo.dbo.users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="WebAppDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
@@ -18,18 +16,9 @@ warning 6002: The table/view 'WebAppDemo.dbo.users' does not have a primary key 
           <Property Name="email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="WebAppDemoModelStoreContainer">
-          <EntitySet Name="users" EntityType="Self.users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [users].[id] AS [id], 
-    [users].[username] AS [username], 
-    [users].[password] AS [password], 
-    [users].[name] AS [name], 
-    [users].[email] AS [email]
-    FROM [dbo].[users] AS [users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebAppDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -43,7 +32,7 @@ warning 6002: The table/view 'WebAppDemo.dbo.users' does not have a primary key 
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="WebAppDemoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WebAppDemoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="users" EntityType="Self.user" />
         </EntityContainer>
       </Schema>
@@ -51,7 +40,7 @@ warning 6002: The table/view 'WebAppDemo.dbo.users' does not have a primary key 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebAppDemoModelStoreContainer" CdmEntityContainer="WebAppDemoEntities">
+        <EntityContainerMapping StorageEntityContainer="WebAppDemoModelStoreContainer" CdmEntityContainer="WebAppDemoEntities1">
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="WebAppDemoModel.user">
               <MappingFragment StoreEntitySet="users">

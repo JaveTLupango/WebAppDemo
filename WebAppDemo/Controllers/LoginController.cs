@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -27,14 +30,14 @@ namespace WebAppDemo.Controllers
             }
             else
             {
-                loginmodel.response = "Wrong Username and Password";
+                //loginmodel.response = "Wrong Username and Password";
                 return View("Index", loginmodel);
             }
         }
 
         private bool IsUsersValid(user m)
         {
-            using (WebAppDemoEntities db = new WebAppDemoEntities())
+            using (WebAppDemoEntities1 db = new WebAppDemoEntities1())
             {
                 var userret = db.users.Where(x =>x.username == m.username && x.password == m.password).FirstOrDefault();
                 if (userret == null)
@@ -50,5 +53,19 @@ namespace WebAppDemo.Controllers
             }
                 //return (m.username == "admin" && m.password == "admin");
         }
+
+        //
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
+            //Request.Cookies.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+       
     }
 }
